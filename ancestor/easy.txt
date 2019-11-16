@@ -1,0 +1,62 @@
+# CSS Ancestor Combinator - Easy
+
+## Summary
+
+As a member of the CSS Working Group, you have been tasked to implement the latest approved proposal from the community - the ancestor combinator! The ancestor combinator spec is as follows:
+
+> The ancestor combinator (`<<`) is placed between two CSS selectors. It matches only those elements matched by the first selector that are the ancestors of elements matched by the second.
+
+```css
+/*
+  Selects all <ancestor>s which have <descendant> as a descendant somewhere
+  in its DOM hieraracy.
+*/
+ancestor << descendant {
+  /* Styles */
+}
+```
+
+Let's run through an example of how it is supposed to work.
+
+Given the following HTML structure:
+
+```html
+<html>
+<body>
+  <div id="a">
+    <div id="b">
+      <span></span>
+      <div id="c">
+        <span></span>
+      </div>
+      <span class="foo"></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <div id="d">
+    <button></button>
+  </div>
+</body>
+</html>
+```
+
+And invoking `document.querySelectorAll('div << span')` in the browser console will give you three `<div>` elements - those with ID "a", "b" and "c" - because they contain a `<span>` somewhere in their hierarchy. Note that `<div id="d">` is not selected because it doesn't contain any `<span>`.
+
+```js
+> document.querySelectorAll('div << span')
+NodeList(3) [div#a, div#b, div#c]
+> document.querySelectorAll('div << span').length
+3
+```
+
+## Problem
+
+Given an HTML file (`index.html`) and a selector, enter the number of elements that match the selector `div << div`.
+
+Another way to phrase this would be the *result* (a number) of executing the following statement, if the ancestor combinator were actually supported:
+
+```js
+console.log(document.querySelectorAll('div << div').length);
+```

@@ -1,0 +1,19 @@
+<html>
+<body>
+  <div id="a">
+    <div id="b">
+      <span></span>
+      <div id="c">
+        <span></span>
+      </div>
+      <span class="foo"></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <div id="d">
+    <button></button>
+  </div>
+</body>
+</html>
